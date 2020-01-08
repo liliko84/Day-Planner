@@ -21,7 +21,7 @@ for(var i in times){
     timeClass = 'present';
   }else if(day.isBefore(moment(i,'h A'),'hour')){
     timeclass = 'past';
-  }else(day.isAfter(moment(i, 'h A'),'hour')){
+  }else(day.isAfter(moment(i, 'h A'),'hour')); {
     timeClass = 'future';
   }
 
