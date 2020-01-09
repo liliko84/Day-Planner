@@ -1,7 +1,6 @@
 // var currentDay = document.getElementById("currentDay");
 var currentDay = $("#currentDay");
-var timeBlocks = $("#timeBlocks")
-
+var timeBlocks = $("#timeBlocks");
 var day = moment();
 // currentDay.textContent = day;
 currentDay.text(day.format('dddd, MMMM Do YYYY'));
@@ -25,42 +24,34 @@ for(var i in times){
     timeClass = 'future';
   }
 
-  var parent = $("<div>").addClass('row time-block');
+  var parent = $("<div>").addClass('row time-block').attr('id', i);
   var hour = $("<div>").addClass('hour col-1').text(i);
   var desc = $("<textarea>").addClass('description col-10 ' + timeClass).val(times[i]);
   var saveBtn = $("<button>").addClass('btn saveBtn col-1').text('save')
-
+ 
   parent.append(hour, desc, saveBtn)
   timeBlocks.append(parent)
-}
+};
 
+$(".saveBtn").on("click", function() {
+  var userInput = $(this).siblings(".description").val();
+  console.log(userInput)
+ var id = $(this).parent().attr("id");
+  console.log(id)
+  localStorage.setItem(id, userInput);
+}); 
 
+$("textarea").each(function(){
+  var hourInput = $(this).parent().attr("id");
+  // hourInput = parseInt(hourInput);
 
+  var task = localStorage.getItem(hourInput);
+  console.log(task)
+  $(this).val(task)
+}); 
 
-
-
-/* var data = {
-  name: "Ben"
-}
-var myArr = ['dog', 'cat', 'iguana']
-var someKey = "name"
-console.log(data.name)
-console.log(data.someKey)
-console.log(myArr[1])
-console.log(data['name'])
-console.log(data[someKey]) */
-
-
-/* function $$(val){
-  return new $_$(val)
-}
-function $_$(val){
-  this.isId = val[0] === "#";
-  this.isClass = val[0] === '.'
-  this.element = val.split("").slice(1).join("");
-  this.text = function(str){
-    if(this.isId){
-      document.getElementById(this.element).textContent = str
-    }
-  }
-} */
+$("textarea").hover(function(){
+  $(this).css("background-color", "green");
+  }, function(){
+  $(this).css("background-color", "red");
+});
