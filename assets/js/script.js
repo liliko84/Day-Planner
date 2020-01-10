@@ -22,8 +22,10 @@ for(var i in times){
     timeclass = 'past';
   }else(day.isAfter(moment(i, 'h A'),'hour')); {
     timeClass = 'future';
+    console.log(moment(i, 'h A'),'hour'+ "222");
+  
   }
-
+ 
   var parent = $("<div>").addClass('row time-block').attr('id', i);
   var hour = $("<div>").addClass('hour col-1').text(i);
   var desc = $("<textarea>").addClass('description col-10 ' + timeClass).val(times[i]);
@@ -49,9 +51,9 @@ $("textarea").each(function(){
   console.log(task)
   $(this).val(task)
 }); 
-
+/* 
 $("textarea").hover(function(){
   $(this).css("background-color", "green");
   }, function(){
   $(this).css("background-color", "red");
-});
+}); */
